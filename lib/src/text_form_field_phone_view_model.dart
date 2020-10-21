@@ -33,7 +33,9 @@ class TextFormFieldPhoneViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void init(String initialPhoneNumber) {
+  void init(String initialPhoneNumber) async {
+    await FlutterLibphonenumber().init();
+
     var _code1 = _getCode((DateTime.now().timeZoneName == '+0530'
         ? 'LK'
         : CountryManager().deviceLocaleCountryCode));
