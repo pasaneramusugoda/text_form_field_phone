@@ -15,6 +15,7 @@ class TextFormFieldPhone
   final FocusNode focusNode;
   final TextInputAction textInputAction;
   final InputDecoration inputDecoration;
+  final Color downIconColor;
 
   TextFormFieldPhone({
     @required this.onFormatFinished,
@@ -23,6 +24,7 @@ class TextFormFieldPhone
     this.focusNode,
     this.textInputAction,
     this.inputDecoration,
+    this.downIconColor = Colors.black54;
   });
 
   @override
@@ -65,7 +67,7 @@ class TextFormFieldPhone
                       Flexible(
                         child: Icon(
                           Icons.keyboard_arrow_down,
-                          color: Colors.black54,
+                          color: downIconColor,
                         ),
                       )
                     ],
