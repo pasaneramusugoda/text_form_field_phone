@@ -82,7 +82,10 @@ class TextFormFieldPhone
                   controller: model.controller,
                   inputFormatters: [
                     LibPhonenumberTextFormatter(
-                      onFormatFinished: onFormatFinished,
+                      onFormatFinished: (val) {
+                        onFormatFinished(
+                            '+${model.countryWithPhoneCode.phoneCode} $val');
+                      },
                       phoneNumberFormat: PhoneNumberFormat.national,
                       phoneNumberType: PhoneNumberType.mobile,
                       overrideSkipCountryCode:
