@@ -70,8 +70,14 @@ class TextFormFieldPhoneViewModel extends BaseViewModel {
 
   CountryWithPhoneCode _getCode(String code) {
     print('_getCode => $code');
-    return CountryManager().countries.singleWhere(
-        (element) => element.countryCode == code || element.phoneCode == code,
-        orElse: () => CountryManager().countries.first);
+    try {
+      return CountryManager().countries.singleWhere(
+          (element) =>
+              (element.countryCode == code || element.phoneCode == code),
+          orElse: () => CountryManager().countries.first);
+    } catch (e) {
+      print('error => _getCode => $e');
+      return CountryManager().countries.first;
+    }
   }
 }
