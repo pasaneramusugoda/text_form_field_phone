@@ -83,8 +83,9 @@ class TextFormFieldPhone
                   inputFormatters: [
                     LibPhonenumberTextFormatter(
                       onFormatFinished: onFormatFinished,
+                      phoneNumberFormat: PhoneNumberFormat.international,
                       overrideSkipCountryCode:
-                      model.countryCode?.code ?? model.defaultCountryCode,
+                          model.countryCode?.code ?? model.defaultCountryCode,
                     ),
                   ],
                   decoration: InputDecoration(
