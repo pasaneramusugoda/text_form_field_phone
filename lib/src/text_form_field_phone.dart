@@ -71,6 +71,16 @@ class TextFormFieldPhone
               child: CountryCodePicker(
                 onChanged: model.onCountryCodeChanged,
                 initialSelection: model.defaultCountryCode,
+                textStyle: textStyle,
+                padding: padding,
+                showCountryOnly: showCountryOnly,
+                searchDecoration: searchDecoration,
+                searchStyle: searchStyle,
+                dialogTextStyle: dialogTextStyle,
+                barrierColor: barrierColor ?? Colors.grey.withOpacity(0.5),
+                backgroundColor: backgroundColor ?? Colors.transparent,
+                boxDecoration: boxDecoration,
+                dialogSize: dialogSize,
                 builder: (countryCode) {
                   return Flex(
                     direction: Axis.horizontal,
@@ -131,7 +141,7 @@ class TextFormFieldPhone
                   decoration: decoration.copyWith(
                     labelText: decoration.labelText ?? 'Enter Mobile Number',
                     hintText:
-                    model.countryWithPhoneCode?.exampleNumberMobileNational,
+                        model.countryWithPhoneCode?.exampleNumberMobileNational,
                   ),
                 ),
               ),
