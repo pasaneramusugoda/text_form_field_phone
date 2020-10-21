@@ -12,11 +12,16 @@ class TextFormFieldPhone
   final FutureOr Function(String val) onFormatFinished;
   final String initialPhoneNumber;
   final bool enabled;
+  final FocusNode focusNode;
+  final TextInputAction textInputAction;
 
-  TextFormFieldPhone(
-      {@required this.onFormatFinished,
-      this.initialPhoneNumber,
-      this.enabled = true});
+  TextFormFieldPhone({
+    @required this.onFormatFinished,
+    this.initialPhoneNumber,
+    this.enabled = true,
+    this.focusNode,
+    this.textInputAction,
+  });
 
   @override
   Widget builder(
@@ -69,6 +74,7 @@ class TextFormFieldPhone
               fit: FlexFit.loose,
               child: Container(
                 child: TextFormField(
+                  focusNode: focusNode,
                   enabled: enabled,
                   keyboardType: TextInputType.phone,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
