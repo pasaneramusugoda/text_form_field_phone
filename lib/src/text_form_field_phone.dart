@@ -14,6 +14,7 @@ class TextFormFieldPhone
   final bool enabled;
   final FocusNode focusNode;
   final TextInputAction textInputAction;
+  final InputDecoration inputDecoration;
 
   TextFormFieldPhone({
     @required this.onFormatFinished,
@@ -21,6 +22,7 @@ class TextFormFieldPhone
     this.enabled = true,
     this.focusNode,
     this.textInputAction,
+    this.inputDecoration,
   });
 
   @override
@@ -78,10 +80,12 @@ class TextFormFieldPhone
                 child: TextFormField(
                   focusNode: focusNode,
                   enabled: enabled,
+                  maxLines: 1,
                   keyboardType: TextInputType.phone,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: Validators.validateRequired,
                   controller: model.controller,
+                  textInputAction: textInputAction,
                   inputFormatters: [
                     LibPhonenumberTextFormatter(
                       onFormatFinished: (val) {
@@ -94,8 +98,9 @@ class TextFormFieldPhone
                           model.countryCode?.code ?? model.defaultCountryCode,
                     ),
                   ],
-                  decoration: InputDecoration(
-                    labelText: 'Enter Mobile Number',
+                  decoration: inputDecoration.copyWith(
+                    labelText:
+                        inputDecoration.labelText ?? 'Enter Mobile Number',
                     hintText:
                         model.countryWithPhoneCode?.exampleNumberMobileNational,
                   ),
