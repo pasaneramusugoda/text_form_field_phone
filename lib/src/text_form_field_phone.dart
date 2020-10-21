@@ -46,7 +46,7 @@ class TextFormFieldPhone
                     children: <Widget>[
                       Flexible(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                          padding: const EdgeInsets.only(right: 5.0),
                           child: Image.asset(
                             countryCode.flagUri,
                             package: 'country_list_pick',
@@ -61,8 +61,10 @@ class TextFormFieldPhone
                         ),
                       ),
                       Flexible(
-                        child: Icon(Icons.keyboard_arrow_down,
-                            color: Colors.black54),
+                        child: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.black54,
+                        ),
                       )
                     ],
                   );
@@ -95,7 +97,7 @@ class TextFormFieldPhone
                   decoration: InputDecoration(
                     labelText: 'Enter Mobile Number',
                     hintText:
-                    model.countryWithPhoneCode?.exampleNumberMobileNational,
+                        model.countryWithPhoneCode?.exampleNumberMobileNational,
                   ),
                 ),
               ),
