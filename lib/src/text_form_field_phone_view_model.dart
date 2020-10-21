@@ -46,7 +46,8 @@ class TextFormFieldPhoneViewModel extends BaseViewModel {
     }
 
     if (initialPhoneNumber != null) {
-      FlutterLibphonenumber().parse(initialPhoneNumber).then((value) {
+      FlutterLibphonenumber().parse(toNumericString(initialPhoneNumber)).then(
+          (value) {
         print(value);
         var _code2 = _getCode(value['country_code']);
 

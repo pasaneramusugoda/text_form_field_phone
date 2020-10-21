@@ -19,7 +19,6 @@ class TextFormFieldPhone
   final Color downIconColor;
   final TextStyle textStyle;
   final EdgeInsetsGeometry padding;
-  final bool showCountryOnly;
   final InputDecoration searchDecoration;
   final TextStyle searchStyle;
   final TextStyle dialogTextStyle;
@@ -46,8 +45,7 @@ class TextFormFieldPhone
       this.downIconColor = Colors.black54,
       this.textStyle,
       this.padding,
-      this.showCountryOnly,
-      this.searchDecoration,
+      this.searchDecoration = const InputDecoration(),
       this.searchStyle,
       this.dialogTextStyle,
       this.barrierColor,
@@ -73,7 +71,6 @@ class TextFormFieldPhone
                 initialSelection: model.defaultCountryCode,
                 textStyle: textStyle,
                 padding: padding,
-                showCountryOnly: showCountryOnly,
                 searchDecoration: searchDecoration,
                 searchStyle: searchStyle,
                 dialogTextStyle: dialogTextStyle,
