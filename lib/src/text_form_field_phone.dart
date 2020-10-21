@@ -10,8 +10,10 @@ import 'package:text_form_field_phone/src/validators.dart';
 class TextFormFieldPhone
     extends ViewModelBuilderWidget<TextFormFieldPhoneViewModel> {
   final FutureOr Function(String val) onFormatFinished;
+  final String initialPhoneNumber;
 
-  TextFormFieldPhone({@required this.onFormatFinished});
+  TextFormFieldPhone(
+      {@required this.onFormatFinished, this.initialPhoneNumber});
 
   @override
   Widget builder(
@@ -91,5 +93,6 @@ class TextFormFieldPhone
       TextFormFieldPhoneViewModel();
 
   @override
-  void onViewModelReady(TextFormFieldPhoneViewModel model) => model.init();
+  void onViewModelReady(TextFormFieldPhoneViewModel model) =>
+      model.init(initialPhoneNumber);
 }

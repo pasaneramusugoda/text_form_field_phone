@@ -33,7 +33,7 @@ class TextFormFieldPhoneViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void init() {
+  void init(String initialPhoneNumber) {
     countryWithPhoneCode = CountryManager().countries.singleWhere((element) =>
         element.countryCode ==
         (DateTime.now().timeZoneName == '+0530'
@@ -42,6 +42,18 @@ class TextFormFieldPhoneViewModel extends BaseViewModel {
 
     if (countryWithPhoneCode != null)
       defaultCountryCode = countryWithPhoneCode.countryCode;
+
+    if (initialPhoneNumber != null) {
+      FlutterLibphonenumber().parse(initialPhoneNumber).then((value) {
+        countryWithPhoneCode = CountryManager().countries.singleWhere(
+            (element) => element.countryCode == value['country_code']);
+
+        if (countryWithPhoneCode != null) {
+          defaultCountryCode = countryWithPhoneCode.countryCode;
+          controller.text = value['national_number'];
+        }
+      });
+    }
   }
 
   void onCountryCodeChanged(CountryCode value) {
