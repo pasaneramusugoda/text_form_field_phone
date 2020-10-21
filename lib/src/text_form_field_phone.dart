@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:country_list_pick/country_list_pick.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_libphonenumber/flutter_libphonenumber.dart';
 import 'package:stacked/stacked.dart';
@@ -15,6 +15,7 @@ class TextFormFieldPhone
   final FocusNode focusNode;
   final TextInputAction textInputAction;
   final InputDecoration decoration;
+
   final Color downIconColor;
 
   TextFormFieldPhone(
@@ -39,10 +40,10 @@ class TextFormFieldPhone
           children: [
             IgnorePointer(
               ignoring: !enabled,
-              child: CountryListPick(
+              child: CountryCodePicker(
                 onChanged: model.onCountryCodeChanged,
                 initialSelection: model.defaultCountryCode,
-                pickerBuilder: (context, countryCode) {
+                builder: (countryCode) {
                   return Flex(
                     direction: Axis.horizontal,
                     mainAxisSize: MainAxisSize.min,
@@ -52,7 +53,7 @@ class TextFormFieldPhone
                           padding: const EdgeInsets.only(right: 5.0),
                           child: Image.asset(
                             countryCode.flagUri,
-                            package: 'country_list_pick',
+                            package: 'country_code_picker',
                             width: 32.0,
                           ),
                         ),
@@ -63,12 +64,12 @@ class TextFormFieldPhone
                           style: TextStyle(color: Colors.transparent),
                         ),
                       ),
-                      Flexible(
-                        child: Icon(
-                          Icons.keyboard_arrow_down,
-                          color: downIconColor,
-                        ),
-                      )
+                      // Flexible(
+                      //   child: Icon(
+                      //     Icons.keyboard_arrow_down,
+                      //     color: downIconColor,
+                      //   ),
+                      // )
                     ],
                   );
                 },
