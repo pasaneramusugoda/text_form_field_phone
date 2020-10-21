@@ -11,9 +11,12 @@ class TextFormFieldPhone
     extends ViewModelBuilderWidget<TextFormFieldPhoneViewModel> {
   final FutureOr Function(String val) onFormatFinished;
   final String initialPhoneNumber;
+  final bool enabled;
 
   TextFormFieldPhone(
-      {@required this.onFormatFinished, this.initialPhoneNumber});
+      {@required this.onFormatFinished,
+      this.initialPhoneNumber,
+      this.enabled = true});
 
   @override
   Widget builder(
@@ -26,43 +29,47 @@ class TextFormFieldPhone
           mainAxisAlignment: MainAxisAlignment.center,
           textBaseline: TextBaseline.alphabetic,
           children: [
-            CountryListPick(
-              onChanged: model.onCountryCodeChanged,
-              initialSelection: model.defaultCountryCode,
-              pickerBuilder: (context, countryCode) {
-                return Flex(
-                  direction: Axis.horizontal,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                        child: Image.asset(
-                          countryCode.flagUri,
-                          package: 'country_list_pick',
-                          width: 32.0,
+            IgnorePointer(
+              ignoring: !enabled,
+              child: CountryListPick(
+                onChanged: model.onCountryCodeChanged,
+                initialSelection: model.defaultCountryCode,
+                pickerBuilder: (context, countryCode) {
+                  return Flex(
+                    direction: Axis.horizontal,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                          child: Image.asset(
+                            countryCode.flagUri,
+                            package: 'country_list_pick',
+                            width: 32.0,
+                          ),
                         ),
                       ),
-                    ),
-                    Flexible(
-                      child: Text(
-                        '',
-                        style: TextStyle(color: Colors.transparent),
+                      Flexible(
+                        child: Text(
+                          '',
+                          style: TextStyle(color: Colors.transparent),
+                        ),
                       ),
-                    ),
-                    Flexible(
-                      child: Icon(Icons.keyboard_arrow_down,
-                          color: Colors.black54),
-                    )
-                  ],
-                );
-              },
+                      Flexible(
+                        child: Icon(Icons.keyboard_arrow_down,
+                            color: Colors.black54),
+                      )
+                    ],
+                  );
+                },
+              ),
             ),
             Flexible(
               flex: 1,
               fit: FlexFit.loose,
               child: Container(
                 child: TextFormField(
+                  enabled: enabled,
                   keyboardType: TextInputType.phone,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: Validators.validateRequired,
@@ -71,13 +78,13 @@ class TextFormFieldPhone
                     LibPhonenumberTextFormatter(
                       onFormatFinished: onFormatFinished,
                       overrideSkipCountryCode:
-                          model.countryCode?.code ?? model.defaultCountryCode,
+                      model.countryCode?.code ?? model.defaultCountryCode,
                     ),
                   ],
                   decoration: InputDecoration(
                     labelText: 'Enter Mobile Number',
                     hintText:
-                        model.countryWithPhoneCode?.exampleNumberMobileNational,
+                    model.countryWithPhoneCode?.exampleNumberMobileNational,
                   ),
                 ),
               ),
