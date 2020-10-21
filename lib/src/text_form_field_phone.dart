@@ -17,6 +17,24 @@ class TextFormFieldPhone
   final InputDecoration decoration;
 
   final Color downIconColor;
+  final TextStyle textStyle;
+  final EdgeInsetsGeometry padding;
+  final bool showCountryOnly;
+  final InputDecoration searchDecoration;
+  final TextStyle searchStyle;
+  final TextStyle dialogTextStyle;
+
+  /// Barrier color of ModalBottomSheet
+  final Color barrierColor;
+
+  /// Background color of ModalBottomSheet
+  final Color backgroundColor;
+
+  /// BoxDecoration for dialog
+  final BoxDecoration boxDecoration;
+
+  /// the size of the selection dialog
+  final Size dialogSize;
 
   TextFormFieldPhone(
       {@required this.onFormatFinished,
@@ -25,7 +43,17 @@ class TextFormFieldPhone
       this.focusNode,
       this.textInputAction,
       this.decoration,
-      this.downIconColor = Colors.black54});
+      this.downIconColor = Colors.black54,
+      this.textStyle,
+      this.padding,
+      this.showCountryOnly,
+      this.searchDecoration,
+      this.searchStyle,
+      this.dialogTextStyle,
+      this.barrierColor,
+      this.backgroundColor,
+      this.boxDecoration,
+      this.dialogSize});
 
   @override
   Widget builder(
@@ -64,12 +92,12 @@ class TextFormFieldPhone
                           style: TextStyle(color: Colors.transparent),
                         ),
                       ),
-                      // Flexible(
-                      //   child: Icon(
-                      //     Icons.keyboard_arrow_down,
-                      //     color: downIconColor,
-                      //   ),
-                      // )
+                      Flexible(
+                        child: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: downIconColor,
+                        ),
+                      ),
                     ],
                   );
                 },
@@ -101,8 +129,7 @@ class TextFormFieldPhone
                     ),
                   ],
                   decoration: decoration.copyWith(
-                    labelText:
-                    decoration.labelText ?? 'Enter Mobile Number',
+                    labelText: decoration.labelText ?? 'Enter Mobile Number',
                     hintText:
                     model.countryWithPhoneCode?.exampleNumberMobileNational,
                   ),
