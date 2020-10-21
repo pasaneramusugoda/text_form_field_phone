@@ -51,6 +51,7 @@ class TextFormFieldPhoneViewModel extends BaseViewModel {
         var _code2 = _getCode(value['country_code']);
 
         if (_code2 != null) {
+          print('_code2 => ${_code2.countryCode}');
           countryWithPhoneCode = _code2;
           defaultCountryCode = _code2.countryCode;
           controller.text = value['national_number'];
@@ -67,6 +68,7 @@ class TextFormFieldPhoneViewModel extends BaseViewModel {
   }
 
   CountryWithPhoneCode _getCode(String code) {
+    print('_getCode => $_getCode');
     return CountryManager().countries.singleWhere(
         (element) => element.countryCode == code || element.phoneCode == code,
         orElse: () => CountryManager().countries.first);
