@@ -62,10 +62,8 @@ class TextFormFieldPhoneViewModel extends BaseViewModel {
   }
 
   void onCountryCodeChanged(CountryCode value) {
-    if (countryWithPhoneCode.countryCode == value.code)
-      return;
+    if (countryWithPhoneCode.countryCode != value.code) controller.clear();
 
-    controller.clear();
     countryCode = value;
     countryWithPhoneCode = CountryManager()
         .countries
