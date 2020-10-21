@@ -14,18 +14,17 @@ class TextFormFieldPhone
   final bool enabled;
   final FocusNode focusNode;
   final TextInputAction textInputAction;
-  final InputDecoration inputDecoration;
+  final InputDecoration decoration;
   final Color downIconColor;
 
-  TextFormFieldPhone({
-    @required this.onFormatFinished,
-    this.initialPhoneNumber,
-    this.enabled = true,
-    this.focusNode,
-    this.textInputAction,
-    this.inputDecoration,
-    this.downIconColor = Colors.black54;
-  });
+  TextFormFieldPhone(
+      {@required this.onFormatFinished,
+      this.initialPhoneNumber,
+      this.enabled = true,
+      this.focusNode,
+      this.textInputAction,
+      this.decoration,
+      this.downIconColor = Colors.black54});
 
   @override
   Widget builder(
@@ -100,11 +99,11 @@ class TextFormFieldPhone
                           model.countryCode?.code ?? model.defaultCountryCode,
                     ),
                   ],
-                  decoration: inputDecoration.copyWith(
+                  decoration: decoration.copyWith(
                     labelText:
-                        inputDecoration.labelText ?? 'Enter Mobile Number',
+                    decoration.labelText ?? 'Enter Mobile Number',
                     hintText:
-                        model.countryWithPhoneCode?.exampleNumberMobileNational,
+                    model.countryWithPhoneCode?.exampleNumberMobileNational,
                   ),
                 ),
               ),
